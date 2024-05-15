@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.scss';
 const Home = () => {
   return (
     <div className={styles.container}>
-      <h1>This is My Mood Playlist</h1>
+      <h1>Your Mood Playlist</h1>
       <nav className={styles.nav}>
         <ul>
           <li>
