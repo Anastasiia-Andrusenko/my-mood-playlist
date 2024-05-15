@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { 
+  createUserWithEmailAndPassword, 
+  GoogleAuthProvider,
+  FacebookAuthProvider, 
+  signInWithPopup, 
+  UserCredential  } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import styles from "../styles/Register.module.scss";
-import { useRouter } from 'next/router';
-import getConfig from 'next/config';
-
-const { publicRuntimeConfig } = getConfig();
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +23,6 @@ const Register = () => {
       setError(err.message);
     }
   };
-
 
   return (
     <div className={styles.container}>
