@@ -9,10 +9,10 @@ const Home = () => {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Link href="/my-mood-playlist/login">Login</Link>
+            <Link href="/login">Login</Link>
           </li>
           <li>
-            <Link href="//my-mood-playlist/login">Register</Link>
+            <Link href="/register">Register</Link>
           </li>
         </ul>
       </nav>
