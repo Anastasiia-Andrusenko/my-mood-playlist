@@ -4,6 +4,7 @@ const nextConfig = {
   distDir: "out",
   trailingSlash: true,
   output: "export", // Додаємо нову опцію
+  basePath: "/my-mood-playlist", // Базовий шлях
   async exportPathMap(defaultPathMap) {
     return {
       "/": { page: "/" },
