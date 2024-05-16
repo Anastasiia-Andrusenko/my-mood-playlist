@@ -1,40 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Цей проєкт створений для того, щоб користувач зміг 
+насолодитись музикою підібраною спеціально під його настрій.
 
-## Getting Started
+1. Користувач потрапляє на сайт, де бачить опис сайту та меню з вибором "логін" або "реєстрація". 
 
-First, run the development server:
+2. Користувач реєструється. Якщо реєстрація успішна, 
+вспиливає повідомлення, що він успішно зареєстрований, бачимо лоудер 
+і потім користувача перекидає на сторінку images.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+3. Якщо користувач вже зареєстрований, то він обирає пункт "логін" , вводить данні та
+ його перекидає на сторінку images (як і у випадку вдалої реєстрації).
+всі помилки або успішні повідомлення з'являються для користувача вспливаючими нотіфікейшн.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.2. При оновленні сторінки, якщо користувач був успішно залогінен, то він залишається 
+аутентифікований і йому НЕ треба знов логінитись, також при рефреші сторінки (де б юзер не знаходився)
+ користувач завжди опиняється на тій сторінці де і відбувся рефреш.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+4. На сторінці із зображеннями користувач баче хедер, опис - кол ту екшн, що треба 
+тицнути на зображення яке відповідає настрою користувача. При ховері на зображення 
+з'являється оверлей над цим зображенням, де детально описана атмосфера і настрій.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+5. При кліку на зображення ми потрапляємо на сторінку з плейлістом. 
+Там бачимо той самий хедер, список треків, кнопки - плей, пауза, трек вперед, трек назад 
+та фрейм де будуть відтворюватися по черзі відео кліпи із списку. 
+Відтворення відбувається через ютуб автоматично вмикаючи один за одним трек із списку.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+6. Користувач під час прослуховування, може перейти назад (на сторінку із зображеннями),
+де може вибрати інший плейліст обравши інше зображення.

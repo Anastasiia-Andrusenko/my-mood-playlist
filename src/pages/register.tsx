@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   createUserWithEmailAndPassword, 
   GoogleAuthProvider,
@@ -10,6 +10,10 @@ import {
 import { auth } from '../utils/firebaseConfig';
 import styles from '../styles/Register.module.scss';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
+import Loader from '../components/Loader/Loader';
+import { toast } from 'react-toastify';
+import withAuthRedirect from '../components/withAuthRedirect';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -19,6 +23,17 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        router.push('/');
+      }
+    });
+    return () => unsubscribe();
+  }, [router]);
 
   const loginWithGoogle = async (): Promise<void> => {
     const provider = new GoogleAuthProvider();
@@ -46,6 +61,8 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -55,22 +72,30 @@ const Register: React.FC = () => {
         await updateProfile(user, {
           displayName: nickname
         });
-      }
-
+      };
       console.log('User registered successfully');
+      toast.success('User registered successfully');
+      router.push('/images');
     } catch (error: any) {
+
+      console.error('Login error:', error.message);
       setError(error.message);
+      toast.error(`Registration failed: ${error.message}`);
+    } finally {
+      
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.container}>
+      {loading && <Loader />}
       <h1>Register</h1>
-      {error && <p className={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="email" className={styles.label}>Email:</label>
           <input
+          className={styles.input}
             type="email"
             placeholder="Email"
             id="email"
@@ -82,6 +107,7 @@ const Register: React.FC = () => {
         <div className={styles.inputGroup}>
           <label htmlFor="password" className={styles.label}>Password:</label>
           <input
+          className={styles.input}
             type="password"
             placeholder="Password"
             id="password"
@@ -93,6 +119,7 @@ const Register: React.FC = () => {
         <div className={styles.inputGroup}>
           <label htmlFor="email" className={styles.label}>Nickname:</label>
           <input
+          className={styles.input}
             type="text"
             placeholder="Nickname"
             id='nickname'
@@ -115,5 +142,5 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default withAuthRedirect(Register);
 

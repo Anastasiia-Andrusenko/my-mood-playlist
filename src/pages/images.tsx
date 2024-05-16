@@ -7,7 +7,7 @@ import styles from '../styles/Images.module.scss';
 
 const Images: React.FC = () => {
   const [nickname, setNickname] = useState<string | null>(null);
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<{url: string, description: string}[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,8 +26,11 @@ const Images: React.FC = () => {
   const fetchImages = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, 'images'));
-      const urls = querySnapshot.docs.map(doc => doc.data().url as string);
-      setImages(urls);
+      const imagesData = querySnapshot.docs.map(doc => ({
+        url: doc.data().url as string,
+        description: doc.data().description as string, // Припускаємо, що у документі є поле description
+      }));
+      setImages(imagesData);
     } catch (error: any) {
       console.error("Error fetching images: ", error.message);
     }
@@ -39,8 +42,13 @@ const Images: React.FC = () => {
       <main>
         <h1>Choose an Image</h1>
         <div className={styles.imageGrid}>
-          {images.map((url, index) => (
-            <img key={index} src={url} alt={`Image ${index + 1}`} className={styles.img}/>
+          {images.map((image, index) => (
+            <div key={index} className={styles.imgWrapper}>
+              <img src={image.url} alt={`Image ${index + 1}`} className={styles.img} />
+              <div className={styles.overlay}>
+                {image.description}
+              </div>
+            </div>
           ))}
         </div>
       </main>
@@ -49,5 +57,6 @@ const Images: React.FC = () => {
 };
 
 export default Images;
+
 
 

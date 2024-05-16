@@ -8,9 +8,12 @@ import {
 } from 'firebase/auth';
 import { auth } from '../utils/firebaseConfig';
 import styles from '../styles/Login.module.scss';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
+import Loader from '../components/Loader/Loader';
+import { toast } from 'react-toastify';
+import withAuthRedirect from '../components/withAuthRedirect';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -19,7 +22,17 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        router.push('/');
+      }
+    });
+    return () => unsubscribe();
+  }, [router]);
 
   const loginWithGoogle = async (): Promise<void> => {
     const provider = new GoogleAuthProvider();
@@ -47,27 +60,37 @@ const Login: React.FC = () => {
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('User logged in successfully');
+      toast.success('User logged in successfully');
       router.push('/images');
     } catch (error: any) {
+
       console.error('Login error:', error.message);
       setError(error.message);
+      toast.error(`Login failed: ${error}`);
+    } finally {
+
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.container}>
+      {loading && <Loader />}
       <h1>Login</h1>
-      {error && <p className={styles.error}>{error}</p>}
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
           <label htmlFor="email" className={styles.label}>
             Email:
           </label>
           <input 
+          className={styles.input}
             type="email"
+            placeholder='email'
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -79,7 +102,9 @@ const Login: React.FC = () => {
             Password:
           </label>
           <input 
+          className={styles.input}
             type="password"
+            placeholder='password'
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -103,4 +128,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default withAuthRedirect(Login);
