@@ -8,6 +8,10 @@ import {
 } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import styles from '../styles/Register.module.scss';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+const basePath = publicRuntimeConfig.basePath || '';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -86,3 +90,4 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from '../styles/Home.module.scss';
-// import getConfig from 'next/config';
+import getConfig from 'next/config';
 
-// const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig();
+const basePath = publicRuntimeConfig.basePath || '';
 
 const Home: React.FC = () => {
   return (
@@ -12,14 +13,10 @@ const Home: React.FC = () => {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Link href="/login">
-              Login
-            </Link>
+            <Link href={`${basePath}/login`}>Login</Link>
           </li>
           <li>
-            <Link href="/register">
-              Register
-            </Link>
+            <Link href={`${basePath}/register`}>Register</Link>
           </li>
         </ul>
       </nav>
@@ -28,4 +25,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-

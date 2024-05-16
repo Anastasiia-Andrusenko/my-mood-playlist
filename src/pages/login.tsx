@@ -9,6 +9,10 @@ import {
 import { auth } from '../../firebaseConfig';
 import styles from '../styles/Login.module.scss';
 import { useState } from 'react';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+const basePath = publicRuntimeConfig.basePath || '';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -41,7 +45,6 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Перенаправлення або інші дії після успішного логіну
       console.log('User logged in successfully');
     } catch (error: any) {
       console.error('Login error:', error.message);
@@ -89,7 +92,7 @@ const Login: React.FC = () => {
         </button>
       </div>
       <p>
-        Don&apos;t have an account? <Link href="/register">Register</Link>
+        Don&apos;t have an account? <Link href={`${basePath}/register`}>Register</Link>
       </p>
     </div>
   );

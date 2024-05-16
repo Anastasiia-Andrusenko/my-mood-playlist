@@ -1,14 +1,16 @@
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   reactStrictMode: true,
   distDir: "out",
   trailingSlash: true,
   output: "export",
-  basePath: '',
+  basePath: isProd ? '/my-mood-playlist' : '',
+  assetPrefix: isProd ? '/my-mood-playlist/' : '',
   publicRuntimeConfig: {
-    basePath: '/my-mood-playlist',
+    basePath: isProd ? '/my-mood-playlist' : '',
   },
-  async exportPathMap(defaultPathMap, 
-    { dev, dir, outDir, distDir, buildId }) {
+  async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
       "/": { page: "/" },
       "/login": { page: "/login" },
