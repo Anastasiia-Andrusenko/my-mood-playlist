@@ -6,10 +6,11 @@ import {
   signInWithPopup, 
   UserCredential 
 } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../utils/firebaseConfig';
 import styles from '../styles/Login.module.scss';
 import { useState } from 'react';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -18,12 +19,14 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const router = useRouter();
 
   const loginWithGoogle = async (): Promise<void> => {
     const provider = new GoogleAuthProvider();
     try {
       const result: UserCredential = await signInWithPopup(auth, provider);
       console.log(result.user); // Виведення інформації користувача
+      router.push('/images'); // Перенаправлення після успішного входу
     } catch (error: any) {
       console.error('Google login error:', error.message);
       setError(error.message);
@@ -35,6 +38,7 @@ const Login: React.FC = () => {
     try {
       const result: UserCredential = await signInWithPopup(auth, provider);
       console.log(result.user); // Виведення інформації користувача
+      router.push('/images'); // Перенаправлення після успішного входу
     } catch (error: any) {
       console.error('Facebook login error:', error.message);
       setError(error.message);
@@ -46,6 +50,7 @@ const Login: React.FC = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('User logged in successfully');
+      router.push('/images');
     } catch (error: any) {
       console.error('Login error:', error.message);
       setError(error.message);
@@ -92,7 +97,7 @@ const Login: React.FC = () => {
         </button>
       </div>
       <p>
-        Don&apos;t have an account? <Link href={`${basePath}/login`} passHref>Register</Link>
+        Don&apos;t have an account? <Link href={`${basePath}/register`} passHref>Register</Link>
       </p>
     </div>
   );

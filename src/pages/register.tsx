@@ -4,9 +4,10 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider, 
   signInWithPopup, 
-  UserCredential 
+  UserCredential,
+  updateProfile 
 } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../utils/firebaseConfig';
 import styles from '../styles/Register.module.scss';
 import getConfig from 'next/config';
 
@@ -16,6 +17,7 @@ const basePath = publicRuntimeConfig.basePath || '';
 const Register: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
   const [error, setError] = useState<string>('');
 
   const loginWithGoogle = async (): Promise<void> => {
@@ -40,10 +42,21 @@ const Register: React.FC = () => {
     }
   };
 
+  
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Зберігаємо nickname в профілі користувача
+      if (user) {
+        await updateProfile(user, {
+          displayName: nickname
+        });
+      }
+
       console.log('User registered successfully');
     } catch (error: any) {
       setError(error.message);
@@ -59,6 +72,7 @@ const Register: React.FC = () => {
           <label htmlFor="email" className={styles.label}>Email:</label>
           <input
             type="email"
+            placeholder="Email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -69,9 +83,21 @@ const Register: React.FC = () => {
           <label htmlFor="password" className={styles.label}>Password:</label>
           <input
             type="password"
+            placeholder="Password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label htmlFor="email" className={styles.label}>Nickname:</label>
+          <input
+            type="text"
+            placeholder="Nickname"
+            id='nickname'
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
             required
           />
         </div>
