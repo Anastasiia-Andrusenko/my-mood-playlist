@@ -13,10 +13,10 @@ const Home: React.FC = () => {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Link href={`${basePath}/login`}>Login</Link>
+            <Link href={`${basePath}/login`} passHref>Login</Link>
           </li>
           <li>
-            <Link href={`${basePath}/register`}>Register</Link>
+            <Link  href={`${basePath}/register`} passHref>Register</Link>
           </li>
         </ul>
       </nav>
