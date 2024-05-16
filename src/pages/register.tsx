@@ -4,15 +4,15 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider, 
   signInWithPopup, 
-  UserCredential  } from 'firebase/auth';
+  UserCredential 
+} from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
-import styles from "../styles/Register.module.scss";
+import styles from '../styles/Register.module.scss';
 
-const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
+const Register: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const loginWithGoogle = async (): Promise<void> => {
     const provider = new GoogleAuthProvider();
@@ -21,6 +21,7 @@ const Register = () => {
       console.log(result.user); // Виведення інформації користувача
     } catch (error: any) {
       console.error('Google login error:', error.message);
+      setError(error.message);
     }
   };
   
@@ -31,17 +32,17 @@ const Register = () => {
       console.log(result.user); // Виведення інформації користувача
     } catch (error: any) {
       console.error('Facebook login error:', error.message);
+      setError(error.message);
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      // Тут буде логіка реєстрації користувача
       await createUserWithEmailAndPassword(auth, email, password);
       console.log('User registered successfully');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error: any) {
+      setError(error.message);
     }
   };
 
@@ -49,7 +50,7 @@ const Register = () => {
     <div className={styles.container}>
       <h1>Register</h1>
       {error && <p className={styles.error}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="email" className={styles.label}>Email:</label>
           <input
@@ -73,12 +74,12 @@ const Register = () => {
         <button type="submit" className={styles.button}>Register</button>
       </form>
       <div>
-      <button onClick={loginWithGoogle} className={styles.button}>
-        Log in with Google
-      </button>
-      <button onClick={loginWithFacebook} className={styles.button}>
-        Log in with Facebook
-      </button>
+        <button onClick={loginWithGoogle} className={styles.button}>
+          Log in with Google
+        </button>
+        <button onClick={loginWithFacebook} className={styles.button}>
+          Log in with Facebook
+        </button>
       </div>
     </div>
   );

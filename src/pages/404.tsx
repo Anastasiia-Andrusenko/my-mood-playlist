@@ -1,6 +1,7 @@
 import React from 'react';
+import { NextPage } from 'next';
 
-const Custom404 = () => {
+const Custom404: NextPage = () => {
   return (
     <div>
       <h1>404 - Page Not Found</h1>
