@@ -13,6 +13,27 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+
+  const loginWithGoogle = async (): Promise<void> => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result: UserCredential = await signInWithPopup(auth, provider);
+      console.log(result.user); // Виведення інформації користувача
+    } catch (error: any) {
+      console.error('Google login error:', error.message);
+    }
+  };
+  
+  const loginWithFacebook = async (): Promise<void> => {
+    const provider = new FacebookAuthProvider();
+    try {
+      const result: UserCredential = await signInWithPopup(auth, provider);
+      console.log(result.user); // Виведення інформації користувача
+    } catch (error: any) {
+      console.error('Facebook login error:', error.message);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -51,6 +72,14 @@ const Register = () => {
         </div>
         <button type="submit" className={styles.button}>Register</button>
       </form>
+      <div>
+      <button onClick={loginWithGoogle} className={styles.button}>
+        Log in with Google
+      </button>
+      <button onClick={loginWithFacebook} className={styles.button}>
+        Log in with Facebook
+      </button>
+      </div>
     </div>
   );
 };

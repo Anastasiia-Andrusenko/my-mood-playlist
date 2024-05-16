@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../styles/Home.module.scss';
 import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig();
+// const { publicRuntimeConfig } = getConfig();
 
 const Home = () => {
 
