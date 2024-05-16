@@ -1,36 +1,41 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { collection, getDocs } from 'firebase/firestore';
 import { db, auth } from '../utils/firebaseConfig';
+import Header from '../components/Header';
 import styles from '../styles/Images.module.scss';
 
-const Images = () => {
+const Images: React.FC = () => {
   const [nickname, setNickname] = useState<string | null>(null);
   const [images, setImages] = useState<string[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      setNickname(user.displayName);
-    }
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setNickname(user.displayName);
+        fetchImages();
+      } else {
+        router.push('/login');
+      }
+    });
 
-    const fetchImages = async () => {
-      const querySnapshot = await getDocs(collection(db, 'images'));
-      const urls = querySnapshot.docs.map(doc => doc.data().url);
-      setImages(urls);
-    };
-
-    fetchImages();
+    return () => unsubscribe();
   }, []);
+
+  const fetchImages = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'images'));
+      const urls = querySnapshot.docs.map(doc => doc.data().url as string);
+      setImages(urls);
+    } catch (error: any) {
+      console.error("Error fetching images: ", error.message);
+    }
+  };
 
   return (
     <div>
-      <header>
-        {nickname ? (
-          <p>Welcome, {nickname}!</p>
-        ) : (
-          <p>Not logged in</p>
-        )}
-      </header>
+      <Header nickname={nickname} />
       <main>
         <h1>Choose an Image</h1>
         <div className={styles.imageGrid}>
@@ -44,4 +49,5 @@ const Images = () => {
 };
 
 export default Images;
+
 

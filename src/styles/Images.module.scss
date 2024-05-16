@@ -1,15 +1,19 @@
 .imageGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 30vw));
+  gap: 40px;
+  max-width: 1400px;
+  margin: auto;
 
   .img {
-    width: 100%;
-    height: auto;
+    display: block;
+    width: auto;
+    height: 100%;
     cursor: pointer;
+    transition: transform 250ms cubic-bezier(0.19, 1, 0.22, 1);
+
     &:hover {
       transform: scale(1.05);
-      transition: transform 0.3s;
     }
   }
 }

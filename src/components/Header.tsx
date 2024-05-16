@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react';
-import { auth } from '../utils/firebaseConfig';
 
-const Header = () => {
-  const [nickname, setNickname] = useState<string | null>(null);
+interface HeaderProps {
+  nickname: string | null;
+}
 
-  useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      setNickname(user.displayName);
-    }
-  }, []);
+const Header: React.FC<HeaderProps> = ({ nickname }) => {
 
   return (
     <header>

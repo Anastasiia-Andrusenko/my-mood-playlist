@@ -97,7 +97,7 @@ const Login: React.FC = () => {
         </button>
       </div>
       <p>
-        Don&apos;t have an account? <Link href={`${basePath}/register`} passHref>Register</Link>
+        Don&apos;t have an account? <Link href={`/register`} passHref>Register</Link>
       </p>
     </div>
   );
