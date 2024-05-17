@@ -1,4 +1,5 @@
-// import Header from '../components/Header';
+// _app.tsx
+// 
 import '../styles/globals.scss'; 
 import type { AppProps } from 'next/app';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,22 +12,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const lastPath = localStorage.getItem('lastPath');
-        if (lastPath && (lastPath === '/images' || lastPath.startsWith('/playlist'))) {
-          router.push(lastPath);
-        }
-      } else {
-        if (router.pathname !== '/login' && router.pathname !== '/register') {
-          router.push('/login');
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, [router]);
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {

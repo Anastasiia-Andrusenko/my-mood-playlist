@@ -1,3 +1,7 @@
+
+// index.tsx
+// 
+
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.scss';
@@ -6,6 +10,7 @@ import { auth } from '../utils/firebaseConfig';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import withAuthRedirect from '../components/withAuthRedirect';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -40,8 +45,9 @@ const Home: React.FC = () => {
           <p>You are already logged in.</p>
           <button onClick={handleLogout}>Logout</button>
         </div>
-      ) : (
-        <nav className={styles.nav}>
+      ) : ( <>
+      <p>Please log in to access all features.</p>
+      <nav className={styles.nav}>
           <ul>
             <li>
               <Link href={`/login`} passHref>
@@ -55,6 +61,7 @@ const Home: React.FC = () => {
             </li>
           </ul>
         </nav>
+      </>
       )}
     </div>
   );
