@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+
+.footer {
+  background-color: $secondary-color;
+  padding: 20px 0;
+  color: white;
+  width: 100vw;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footerRight {
+  flex: 1;
+  text-align: right;
+}
+
+.footerLinks,
+.footerSocial {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footerLinks li,
+.footerSocial li {
+  margin-left: 15px;
+}
+
+.footerLinks a,
+.footerSocial a {
+  color: $font-secondary-color;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+
+
+
+.footerLinks a:hover,
+.footerSocial a:hover {
+  color: $font-hoover-color;
+}

@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.header {
+  background-color: $secondary-color;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 10px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.welcome {
+
+}

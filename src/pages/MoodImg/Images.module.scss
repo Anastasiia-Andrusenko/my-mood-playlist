@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.container {
+  padding: 20px;
+  margin-bottom: 10vh;
+}
+
+.title {
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  opacity: 0; // Початкова прозорість
+  animation: fadeIn 2000ms forwards 5000ms, pulse 400ms infinite 7000ms; // Додавання анімацій
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+
+.text {
+  // color: $font-primary-color;
+  max-width: 1000px;
+  font-weight: 300;
+  font-size: $heading-font-size;
+text-align: center;
+  margin: 15vh auto;
+}

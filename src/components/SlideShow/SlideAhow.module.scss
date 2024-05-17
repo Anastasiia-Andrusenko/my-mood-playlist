@@ -1,0 +1,81 @@
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    z-index: 10;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 400ms ease-in-out;
+    z-index: 0;
+
+    &.active {
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    font-size: 3em;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    text-align: center;
+
+    h2 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .word {
+      opacity: 0;
+      transform: translateY(200px);
+      animation: fadeInUp 500ms forwards; // Додаємо анімацію для появи тексту
+    }
+
+    .heart {
+      animation: fadeInUp 2000ms forwards, pulse 280ms infinite alternate; // Додаємо пульсуючу анімацію для слова "heart"
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0); // Анімація для плавного підняття тексту
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1); // Початковий стан пульсуючої анімації
+  }
+  100% {
+    transform: scale(1.03); // Збільшення масштабу для пульсації
+  }
+}
+  
+

@@ -9,6 +9,7 @@ import useAuthStateWithRedirect from '../../hooks/useAuthStateWithRedirect';
 import { useRouter } from 'next/router';
 import Loader from '../../components/Loader/Loader';
 import ImagesContent from '../../components/ImagesContent/ImagesContent';
+import Footer from '../../components/Footer/Footer';
 
 
 
@@ -44,12 +45,19 @@ const Images: React.FC = () => {
   return (
     <div>
       <Header nickname={nickname} />
-      <main>
-        <h1>Choose an Image</h1>
+      <main className={styles.container}>
+        
+        <p className={styles.text}>
+          Sometimes no words can describe what you feel. 
+          Therefore, you have different atmospheric images 
+          in front of you. <br/>Click on the one that suits you best.
+        </p>
+        <h2 className={styles.title}>Choose with your heart</h2>
         <Suspense fallback={<Loader/>}>
           <ImagesContent  imgContent={images}/>
         </Suspense>
       </main>
+      <Footer/>
     </div>
   );
 };
