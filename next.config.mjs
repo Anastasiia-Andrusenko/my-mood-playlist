@@ -9,9 +9,9 @@ const nextConfig = {
   assetPrefix: isProd ? '/my-mood-playlist/' : '',
   publicRuntimeConfig: {
     basePath: isProd ? '/my-mood-playlist' : '',
+  },
   images: {
     unoptimized: true,
-  }  
   },
   async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
@@ -31,3 +31,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
