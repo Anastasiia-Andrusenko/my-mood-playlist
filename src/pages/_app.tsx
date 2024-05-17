@@ -4,8 +4,11 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Loader from '../components/Loader/Loader';
+import { QueryClientProvider } from 'react-query';
+import queryClient from '../utils/queryClient';
 
 
 
@@ -29,10 +32,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   }, [router]);
 
   return (
-    <>
-      <Component {...pageProps} />
-      <ToastContainer />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<Loader/>}>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </Suspense>
+    </QueryClientProvider>
   );
 };
 
