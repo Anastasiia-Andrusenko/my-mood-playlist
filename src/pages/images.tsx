@@ -22,7 +22,7 @@ const Images: React.FC = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   const fetchImages = async () => {
     try {

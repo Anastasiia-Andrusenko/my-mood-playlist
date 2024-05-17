@@ -10,7 +10,6 @@ import { auth } from '../utils/firebaseConfig';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import withAuthRedirect from '../components/withAuthRedirect';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
