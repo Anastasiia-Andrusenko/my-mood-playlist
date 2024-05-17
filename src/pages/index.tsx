@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   const handleLogout = async () => {
     try {

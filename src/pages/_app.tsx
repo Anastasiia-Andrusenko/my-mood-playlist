@@ -6,8 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { auth } from '../utils/firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';
+
 
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {

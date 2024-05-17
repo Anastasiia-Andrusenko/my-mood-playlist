@@ -4,6 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db, auth } from '../utils/firebaseConfig';
 import Header from '../components/Header';
 import styles from '../styles/Images.module.scss';
+import Image from 'next/image';
 
 const Images: React.FC = () => {
   const [nickname, setNickname] = useState<string | null>(null);
@@ -44,7 +45,7 @@ const Images: React.FC = () => {
         <div className={styles.imageGrid}>
           {images.map((image, index) => (
             <div key={index} className={styles.imgWrapper}>
-              <img src={image.url} alt={`Image ${index + 1}`} className={styles.img} />
+              <Image src={image.url} alt={`Image ${index + 1}`} className={styles.img} />
               <div className={styles.overlay}>
                 {image.description}
               </div>
