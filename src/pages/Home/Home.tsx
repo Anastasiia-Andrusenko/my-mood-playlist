@@ -52,8 +52,8 @@ const Home: React.FC = () => {
       
       {isLoggedIn ? (
         <div className={styles.loggedIn}>
-          <p>You are already logged in.</p>
-          <button onClick={onLogout}>Logout</button>
+          <p>You are already logged in. However, you can log out anytime</p>
+          <button onClick={onLogout} className={styles.button}>now</button>
         </div>
       ) : ( <>
       <p className={styles.please}>Please log in to access all features.</p>
