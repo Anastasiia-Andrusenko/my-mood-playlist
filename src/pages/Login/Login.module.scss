@@ -2,16 +2,40 @@
 
 .container {
   display: flex;
+  padding: 20px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
   text-align: center;
+  background-image: url('../../../public/img/log.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, $overlay-color, $overlay-color);
+  z-index: 1;
+}
+
+.form {
+  z-index: 2;
 }
 
 
 
 .link{
   color: $font-primary-color;
+}
+
+.please {
+  z-index: 2;
+  font-size: 30px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }

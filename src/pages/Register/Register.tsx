@@ -20,6 +20,7 @@ import { toast } from 'react-toastify';
 import withAuthRedirect from '../../components/withAuthRedirect';
 import AuthForm from '../../components/Auth/AuthForm';
 import AuthButton from '../../components/Auth/AuthButton';
+import Link from 'next/link';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -92,16 +93,24 @@ const Register: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {loading && <Loader />}
-      <AuthForm title="Register"
+       <div className={styles.overlay}></div>
+       <h2 className={styles.please}>Please register to access all features</h2>
+       <div className={styles.form}>
+       {loading && <Loader />}
+      <AuthForm title=""
         buttonText="Register"
         onSubmit={handleSubmit}
         showNickname={true} 
       />
+      <p>
+      Already have an account? Then <Link href={`/login`} className={styles.link} passHref>Log in</Link>
+      </p>
       <div>
         <AuthButton onClick={loginWithGoogle} text="Log in with Google" />
         <AuthButton onClick={loginWithFacebook} text="Log in with Facebook" />
       </div>
+      
+       </div>
     </div>
   );
 };

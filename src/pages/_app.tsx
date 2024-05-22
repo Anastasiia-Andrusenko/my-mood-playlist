@@ -4,7 +4,7 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Loader from '../components/Loader/Loader';
 import { QueryClientProvider } from 'react-query';

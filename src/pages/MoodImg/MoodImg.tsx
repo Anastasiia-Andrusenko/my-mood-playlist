@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import Loader from '../../components/Loader/Loader';
 import ImagesContent from '../../components/ImagesContent/ImagesContent';
 import Footer from '../../components/Footer/Footer';
+import UploadImage from '../../components/UploadImg/UploadImage';
 
 
 
@@ -46,7 +47,6 @@ const Images: React.FC = () => {
     <div>
       <Header nickname={nickname} />
       <main className={styles.container}>
-        
         <p className={styles.text}>
           Sometimes no words can describe what you feel. 
           Therefore, you have different atmospheric images 
@@ -57,6 +57,7 @@ const Images: React.FC = () => {
           <ImagesContent  imgContent={images}/>
         </Suspense>
       </main>
+      {/* <UploadImage/> */}
       <Footer/>
     </div>
   );

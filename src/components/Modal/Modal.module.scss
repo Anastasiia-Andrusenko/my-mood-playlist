@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $overlay-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  position: relative;
+  background-color: $primary-color;
+  padding: 30px 40px;
+  text-align: center;
+  z-index: 101;
+  width: 90vw;
+  box-shadow: 0px 0px 400px 10px rgba(255,255,255,0.6);
+-webkit-box-shadow: 0px 0px 400px 10px rgba(255,255,255,0.6);
+-moz-box-shadow: 0px 0px 400px 10px rgba(255,255,255,0.6);
+
+@media screen and (min-width: 760px) {
+  width: 30vw;
+}
+@media screen and (min-width: 1200px) {
+  width: 20vw;
+}
+  
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 80px;
+  text-transform: uppercase;
+  font-family: $font-family-heading;
+  font-size: $btn-font-size;
+  padding: 10px 20px;
+  background-color: $secondary-color;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 6px;
+  margin-left: 4px;
+  margin-bottom: 10px;
+  transition: background-color 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.button:hover {
+  background-color: $font-hoover-color;
+}
+
+.close {
+  font-family: $font-family-base;
+  font-weight: 100;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

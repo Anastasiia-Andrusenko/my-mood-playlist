@@ -3,13 +3,6 @@
 // 
 
 import Link from 'next/link';
-import { 
-  signInWithEmailAndPassword, 
-  GoogleAuthProvider,
-  FacebookAuthProvider, 
-  signInWithPopup, 
-  UserCredential 
-} from 'firebase/auth';
 import { auth } from '../../utils/firebaseConfig';
 import styles from './Login.module.scss';
 import React, { useState, useEffect } from 'react';
@@ -79,8 +72,11 @@ const Login: React.FC = () => {
   return (
     <div className={styles.container}>
       {loading && <Loader />}
+      <h2 className={styles.please}>Please log in to access all features</h2>
+      <div className={styles.overlay}></div>
+      <div className={styles.form}>
       <AuthForm 
-        title="Login"
+        title=""
         buttonText="Login"
         onSubmit={onHandleLogin}
         showNickname={false} 
@@ -92,6 +88,7 @@ const Login: React.FC = () => {
       <p>
         Don&apos;t have an account? <Link href={`/register`} className={styles.link} passHref>Register</Link>
       </p>
+      </div>
     </div>
   );
 };
