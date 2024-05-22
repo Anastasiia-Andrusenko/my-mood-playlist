@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './ImageContent.module.scss';
 import { useQuery } from 'react-query';
 import { FC, useState } from "react";
+import Link from "next/link";
 
 
 const fetchImagesQuery = async () => {
@@ -30,7 +31,9 @@ const ImagesContent: FC <ImagesContentProps> = ({ imgContent })=> {
         <div key={index} className={styles.imgWrapper}>
           <Image width={500} height={350} src={image.url} alt={`Image ${index + 1}`} className={styles.img} priority={true} />
           <div className={styles.overlay}>
-            {image.description}
+            <Link href={`/playlist`} className={styles.link} passHref >
+              <p className={styles.description}> {image.description}</p>
+            </Link>
           </div>
         </div>
       ))}
