@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss'; 
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
@@ -11,8 +12,8 @@ const Footer: React.FC = () => {
         <div className={styles.footerRight}>
           <ul className={styles.footerLinks}>
             {/* <li><a href="/terms">Terms of Use</a></li> */}
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li><Link href="/privacy">Privacy Policy</Link></li>
+            <li><Link href="/contact">Contact Us</Link></li>
           </ul>
           {/* <ul className="footer-social">
             <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
