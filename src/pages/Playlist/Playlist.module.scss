@@ -3,6 +3,7 @@
 .container {
   padding: 20px;
   margin-bottom: 10vh;
+  width: 100vw;
 }
 
 .content {
@@ -10,6 +11,10 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .title {
@@ -33,18 +38,21 @@
 
 .listContainer {
   width: 30vw; /* Змініть ширину за потреби */
-  height: 20vw; /* Змініть висоту за потреби */
-  background-color: rgb(91, 91, 255);
+  max-height: 60vw; /* Змініть висоту за потреби */
+  background-color: $secondary-color;
+  padding: 15px;
+  overflow: scroll;
+
   @media screen and (max-width: 768px) {
     width: 80vw;
-    height: 60vw;
+    max-height: 40vh
   }
 }
 
 .imgWrapper {
   position: relative;
-  width: 30vw; /* Змініть ширину за потреби */
-  height: 20vw; /* Змініть висоту за потреби */
+  width: 40vw; /* Змініть ширину за потреби */
+  height: 24vw; /* Змініть висоту за потреби */
   overflow: hidden;
 
   @media screen and (max-width: 768px) {
@@ -95,7 +103,7 @@
 
 .description {
   color: $font-primary-color;
-  font-size: $heading-font-size;
+  font-size: $base-font-size;
   font-weight: 100;
   z-index: 200;
   padding: 40px; /* Змініть значення за потреби */
@@ -107,8 +115,32 @@
 }
 
 .playerContainer {
+  padding: 0;
+  display: block;
   width: 40vw;
-  height: 10vh;
-  background-color: rgb(249, 205, 144);
-  margin: 10vh auto;
+  height: auto;
+  // background-color: rgb(249, 205, 144);
+}
+
+.list {
+  list-style: decimal;
+  font-weight: 200;
+}
+
+.item {
+  font-size: 16px;
+  padding: 4px;
+  color: $font-primary-color;
+
+  @media screen and (min-width: 1199px) {
+    line-height: 2rem;
+  }
+}
+
+.ImgPlay {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

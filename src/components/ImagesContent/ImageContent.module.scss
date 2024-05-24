@@ -16,7 +16,7 @@
   overflow: hidden;
   cursor: pointer;
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     width: 80vw;
     height: 60vw;
   }

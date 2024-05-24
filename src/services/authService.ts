@@ -1,3 +1,5 @@
+
+// 
 // services/authService.ts
 
 import { auth } from '../utils/firebaseConfig';

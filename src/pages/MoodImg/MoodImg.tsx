@@ -15,7 +15,7 @@ import UploadImage from '../../components/UploadImg/UploadImage';
 
 
 const Images: React.FC = () => {
-  const [images, setImages] = useState<{ url: string; description: string }[]>([]);
+  const [images, setImages] = useState<{ url: string; description: string; playlistId: string }[]>([]);
   const [loading, setLoading] = useState(true); // Додаємо стан завантаження
   const nickname = useAuthStateWithRedirect();
   const router = useRouter();
