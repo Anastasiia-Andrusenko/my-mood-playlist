@@ -10,14 +10,19 @@ import { toast } from 'react-toastify';
 import { handleLogout } from '../../services/authService';
 import { useRouter } from "next/router";
 import Modal from "../Modal/Modal";
+import { GrHome } from "react-icons/gr";
+import { TbLogout } from "react-icons/tb";
+import { MdOutlineLibraryMusic } from "react-icons/md";
 
 interface HeaderProps {
   nickname: string | null;
+  page: string | null;
 }
 
-const Header: React.FC<HeaderProps> = ({ nickname }) => {
+const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+  const currentPage = page;
 
   useEffect(() => {
     if (isModalOpen) {
@@ -66,10 +71,26 @@ const Header: React.FC<HeaderProps> = ({ nickname }) => {
       />
         {nickname ? (
           <div className={styles.content}>
-            <p className={styles.welcome}>How are you, {nickname} ?</p>
+            <p className={styles.welcome}>How are you, {nickname}?</p>
             <div className={styles.nav}>
-              <Link href={`/`} className={styles.link} passHref> go home</Link>
-              <p onClick={handleOpenModal} className={styles.link}>log out</p>
+              {page && <Link href={`/images`} className={styles.link} passHref>
+                <div className={styles.tooltip}>
+                    <MdOutlineLibraryMusic />
+                    <span className={styles.tooltiptext}>back to mood list</span>
+                </div>
+              </Link>}
+              <Link href={`/`} className={styles.link} passHref >
+                <div className={styles.tooltip}>
+                    <GrHome />
+                    <span className={styles.tooltiptext}>go Home page</span>
+                </div>
+                </Link>
+              <p onClick={handleOpenModal} className={styles.link} >
+              <div className={styles.tooltip}>
+                <TbLogout />
+                  <span className={styles.tooltiptext}>Log Out</span>
+                </div>
+              </p>
             </div>
           </div>
         ) : (

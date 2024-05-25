@@ -2,55 +2,72 @@
 
 .footer {
   background-color: $secondary-color;
-  padding: 20px 0;
+  padding: 10px 0;
   color: white;
   width: 100vw;
+  text-align: center;
 }
 
 .footerContent {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
+
+  @media screen and (min-width: 420px) {
+    flex-direction: column;
+  }
 }
 
-.footer-left {
-  flex: 1;
+.footerPrivacy {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.footerRight {
-  flex: 1;
-  text-align: right;
-}
 
-.footerLinks,
-.footerSocial {
+.footerLinks {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+   gap: 20px;
+  }
 }
 
-.footerLinks li,
-.footerSocial li {
-  margin-left: 15px;
-}
 
-.footerLinks a,
-.footerSocial a {
-  color: $font-secondary-color;
+
+.text {
+  color: $font-primary-color;
   text-decoration: none;
+  width: fit-content;
+  font-size: 0.8rem;
+  text-align: center;
+  vertical-align: middle;
   transition: color 0.3s;
+
+  @media screen and (min-width: 760px) {
+    font-size: 1rem;
+  }
 }
 
-
-
-
-.footerLinks a:hover,
-.footerSocial a:hover {
+.text:hover {
   color: $font-hoover-color;
+}
+
+.rights{
+  font-size: 0.8rem;
+
+  @media screen and (min-width: 760px) {
+    font-size: 1rem;
+  }
 }

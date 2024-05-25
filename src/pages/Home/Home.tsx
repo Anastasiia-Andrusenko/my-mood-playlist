@@ -15,12 +15,16 @@ import useAuthState from '../../hooks/useAuthState';
 import SlideShow from '../../components/SlideShow/SlideShow';
 import Footer from '../../components/Footer/Footer';
 import { animateScroll as scroll, scroller } from 'react-scroll';
+import Modal from '../../components/Modal/Modal';
+import { TbLogout } from "react-icons/tb";
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
 
 const Home: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -43,23 +47,50 @@ const Home: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
 
-  const onLogout = async () => {
+  const logout = async () => {
+    // Реалізація функції onLogout
     try {
       const result = await handleLogout();
       if (result.success) {
-        toast.warning('You logged out');
-        router.push('/');
-      } else {
-        toast.error('Logout failed');
+      toast.warning('You logged out');
+      router.push('/');
+    } else {
+      toast.error('Logout failed');
       }
     } catch (error) {
       toast.error('An error occurred during logout');
     }
+    console.log('User logged out');
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleConfirmLogout = () => {
+    setIsModalOpen(false);
+    logout();
   };
 
   return (
     <div className={styles.container}>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmLogout}
+      />
       <SlideShow text='listen to your heart'/>
       <p className={styles.text} id='text-section'>Your life is like the best fucking movie! <br/>
         The background changes, characters appear. 
@@ -74,7 +105,7 @@ const Home: React.FC = () => {
       {isLoggedIn ? (
         <div className={styles.loggedIn}>
           <p className={styles.already}>You are already logged in. However, you can log out anytime</p>
-          <button onClick={onLogout} className={styles.button}>now</button>
+          <button onClick={handleOpenModal} className={styles.button}>now<TbLogout className={styles.icon}/></button>
         </div>
       ) : ( <>
       <p className={styles.please}>Please log in to access all features.</p>

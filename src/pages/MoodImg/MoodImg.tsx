@@ -45,7 +45,7 @@ const Images: React.FC = () => {
 
   return (
     <div>
-      <Header nickname={nickname} />
+      <Header nickname={nickname} page={''}/>
       <main className={styles.container}>
         <p className={styles.text}>
           Sometimes no words can describe what you feel. 
