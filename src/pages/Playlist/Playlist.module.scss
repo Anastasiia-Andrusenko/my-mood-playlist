@@ -93,12 +93,33 @@
   padding: 0;
   display: block;
   margin-top: 10vh;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 11vw;
+  }
+
+  @media screen and (min-width: 850px) {
+    margin-top: 12vw;
+  }
+
+  @media screen and (min-width: 1020px) {
+    margin-top: 13vw;
+  }
+
+  @media screen and (min-width: 1400px) {
+    margin-top: 14vw;
+  }
 }
 
 .listContainer {
   overflow: scroll;
   scrollbar-color: $font-primary-color;
   padding: 0;
+  margin-left: 10vw;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
 }
 
 .list {
@@ -121,6 +142,10 @@
 
   @media screen and (min-width: 1020px) {
     margin-top: 20vw;
+  }
+
+  @media screen and (min-width: 1400px) {
+    margin-top: 30vw;
   }
 }
 

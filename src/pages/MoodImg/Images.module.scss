@@ -36,7 +36,11 @@
   // color: $font-primary-color;
   max-width: 1000px;
   font-weight: 300;
-  font-size: $heading-font-size;
+  font-size: 26px;
 text-align: center;
   margin: 15vh auto;
+
+  @media screen and (min-width: 1199px) {
+    font-size: $heading-font-size;
+  }
 }

@@ -15,6 +15,7 @@ import queryClient from '../utils/queryClient';
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
 
+
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       if (url === '/images' || url.startsWith('/playlist')) {
@@ -23,7 +24,6 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         localStorage.removeItem('lastPath');
       }
     };
-
     router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {
@@ -34,8 +34,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loader/>}>
-        <Component {...pageProps} />
-        <ToastContainer />
+          <Component {...pageProps} />
+          <ToastContainer />
       </Suspense>
     </QueryClientProvider>
   );
