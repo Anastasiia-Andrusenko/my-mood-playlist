@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
                     <GrHome />
                     <span className={styles.tooltiptext}>go Home page</span>
                 </div>
-                </Link>
+              </Link>
               <p onClick={handleOpenModal} className={styles.link} >
               <div className={styles.tooltip}>
                 <TbLogout />
@@ -104,7 +104,15 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
             </p>
           </div>
         ) : (
-          <p>Not logged in</p>
+          <div className={styles.notLogin}>
+            <Link href={`/`} className={styles.link} passHref >
+                <div className={styles.tooltip}>
+                    <GrHome />
+                    <span className={styles.tooltiptext}>go Home page</span>
+                </div>
+              </Link>
+              <p>Not logged in</p>
+          </div>
         )}
       </div>
     </header>

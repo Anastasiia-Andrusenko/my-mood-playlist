@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Modal.module.scss';
 
-
 const Modal = ({ isOpen, onClose, onConfirm }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleOverlayClick = (e) => {
@@ -25,5 +39,5 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
   );
 };
 
-
 export default Modal;
+

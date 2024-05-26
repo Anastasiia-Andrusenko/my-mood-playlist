@@ -1,3 +1,5 @@
+// Home.module.scss
+
 @import '../../styles/variables';
 
 .container {
@@ -68,8 +70,6 @@
   }
 }
 
-
-
 .comeOn {
   font-size: 40px;
   margin-bottom: 10vh;
@@ -90,19 +90,19 @@
   }
 }
 
-
-
 .title {
   font-size: 2.4em;
   width: 100vw;
   background-image: url('../../../public/img/bg/011.jpg');
+  background-attachment: fixed; // Додаємо паралакс ефект
   background-position: center top;
   background-repeat: no-repeat;
   margin: 0 auto;
-  padding: 20vh 0 27vh 0; // Зміщуємо зображення вище
+  padding: 30vh 0 40vh 0; // Зміщуємо зображення вище
   position: relative; // Додаємо позиціонування для псевдоелемента
   color: $font-primary-color; // Колір тексту білий, щоб був видимий на фоні
   z-index: 2; // Збільшуємо z-index для тексту
+  
 
   // Додаємо напівпрозорий градієнт
   &::before {
@@ -116,6 +116,7 @@
     z-index: -1; // Розміщуємо градієнт під текстом
   }
 }
+
 
 .already {
   margin-top: 5vh;
@@ -176,8 +177,13 @@
   transition: transform 250ms ease;
 }
 
-.hookContainer {
-  background-color: $secondary-color;
+// чи можна додати паралакс ефект наступним елементам? 
+.hookContainer { 
+  background-color: $secondary-color;  
+   background: linear-gradient(to bottom,#d0d0d03d,  #00000000, #d0d0d03d);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
   width: 100vw;
   margin-bottom: 10vw;
 }

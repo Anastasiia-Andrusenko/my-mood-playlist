@@ -21,6 +21,8 @@ import withAuthRedirect from '../../components/withAuthRedirect';
 import AuthForm from '../../components/Auth/AuthForm';
 import AuthButton from '../../components/Auth/AuthButton';
 import Link from 'next/link';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -98,6 +100,8 @@ const Register: React.FC = () => {
   };
 
   return (
+    <>
+    <Header nickname={''} page={''}/>
     <div className={styles.container}>
        <div className={styles.overlay}></div>
        <h2 className={styles.please}>Please register to access all features</h2>
@@ -117,6 +121,8 @@ const Register: React.FC = () => {
       </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

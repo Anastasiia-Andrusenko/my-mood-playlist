@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .header {
+  z-index: 100;
   background-color: $secondary-color;
   position: absolute;
   top: 0;
@@ -116,4 +117,12 @@
 
 .nickname {
   color: $font-primary-color;
+}
+
+.notLogin {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+align-items: center;
+justify-content: space-between;
 }

@@ -11,6 +11,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .overlay {
@@ -24,7 +25,21 @@
 }
 
 .form {
+  padding: 40px;
   z-index: 2;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  transition: transform 250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.form:hover,
+.form:focus,
+.form:active {
+  transform: scale(1.2);
 }
 
 

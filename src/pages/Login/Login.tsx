@@ -15,6 +15,8 @@ import AuthButton from '../../components/Auth/AuthButton';
 import AuthForm from '../../components/Auth/AuthForm';
 import useAuthState from '../../hooks/useAuthState';
 import { loginWithGoogle, loginWithFacebook, handleLogin } from '../../services/authService';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -76,6 +78,8 @@ const Login: React.FC = () => {
 
 
   return (
+    <div>
+    <Header nickname='' page={''}/>
     <div className={styles.container}>
       {loading && <Loader />}
       <h2 className={styles.please}>Please log in to access all features</h2>
@@ -95,6 +99,8 @@ const Login: React.FC = () => {
         Don&apos;t have an account? <Link href={`/register`} className={styles.link} passHref>Register</Link>
       </p>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };
