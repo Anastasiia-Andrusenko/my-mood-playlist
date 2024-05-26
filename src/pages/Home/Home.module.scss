@@ -9,6 +9,24 @@
   text-align: center;
 }
 
+.slideShowContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  transition: transform 2s ease-in-out;
+}
+
+.slideShowContainer.show {
+  transform: translateY(0);
+}
+
+.slideShowContainer.hide {
+  transform: translateY(-100%);
+}
+
 
 .link:hover {
   color: rgb(255, 159, 220);
@@ -35,10 +53,19 @@
 
 
 .text {
-  max-width: 1200px;
-  font-size: 1.6em;
+  color: $font-secondary-color;
+  padding: 10px;
+  width: 90vw;
+  max-width: 1500px;
+  font-size: 1.05rem;
   text-transform: uppercase;
-  margin-top: 10vh;
+  margin: 10vh 0;
+
+
+  @media screen and (min-width: 768px) {
+    font-size: 2em;
+    font-weight: 800;
+  }
 }
 
 
@@ -55,7 +82,7 @@
       transform: scale(1);
     }
     50% {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
     100% {
       transform: scale(1);
@@ -74,7 +101,7 @@
   margin: 0 auto;
   padding: 20vh 0 27vh 0; // Зміщуємо зображення вище
   position: relative; // Додаємо позиціонування для псевдоелемента
-  color: white; // Колір тексту білий, щоб був видимий на фоні
+  color: $font-primary-color; // Колір тексту білий, щоб був видимий на фоні
   z-index: 2; // Збільшуємо z-index для тексту
 
   // Додаємо напівпрозорий градієнт
@@ -123,4 +150,75 @@
   font-size: $heading-font-size;
   text-align: center;
   padding-left: 6px;
+}
+
+.imageGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 500px;
+}
+
+.imgWrapper {
+  position: relative;
+  width: 100%; /* Змініть ширину за потреби */
+  height: 100%; /* Змініть висоту за потреби */
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.img {
+  width: 90vw;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 250ms ease;
+}
+
+.hookContainer {
+  background-color: $secondary-color;
+  width: 100vw;
+  margin-bottom: 10vw;
+}
+
+.hook {
+  margin: 6vw auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 90vw;
+  max-width: 1400px;
+
+  @media screen and (min-width: 768px) {
+    flex-wrap: nowrap;
+    gap: 40px;
+  }
+}
+
+
+
+.hookText {
+  color: $font-primary-color;
+  font-size: 1.1em;
+  font-weight: 100;
+  padding: 10px;
+
+  @media screen and (min-width: 768px) {
+    padding: 20px;
+    font-size: 1.2em;
+    line-height: 2em;
+    letter-spacing: 0.1dvi;
+  }
+
+  @media screen and (min-width: 1199px) {
+    font-size: 1.6em;
+  }
+}
+
+.textlink {
+  font-weight: 400;
+  text-decoration: underline;
 }

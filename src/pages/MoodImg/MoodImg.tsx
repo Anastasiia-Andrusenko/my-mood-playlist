@@ -40,7 +40,7 @@ const Images: React.FC = () => {
   }, [nickname]);
 
   if (!nickname) {
-    return null; // Або завантажувальний індикатор
+    return <Loader/>  ; // Або завантажувальний індикатор
   }
 
   return (

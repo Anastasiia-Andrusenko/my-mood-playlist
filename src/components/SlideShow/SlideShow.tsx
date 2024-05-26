@@ -37,7 +37,7 @@ const SlideShow = ({text}) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 600); // Змінювати зображення кожні 0.6 секунд
+    }, 300); // Змінювати зображення кожні 0.5 секунд
 
     return () => clearInterval(interval);
   }, []);

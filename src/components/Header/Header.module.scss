@@ -74,10 +74,36 @@
   position: absolute;
   z-index: 1;
   bottom: -60%; /* позиція підказки зверху */
-  left: 50%;
+  left: 120%;
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
+}
+
+.tooltipText {
+  font-size: 12px;
+  visibility: hidden;
+  width: 180px;
+  background-color: $secondary-color;
+  color: $font-primary-color;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  left: 30%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  bottom: -100%;
+}
+
+.nickname:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
+-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
 }
 
 .tooltip:hover .tooltiptext {
@@ -86,4 +112,8 @@
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
 -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
 -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
+}
+
+.nickname {
+  color: $font-primary-color;
 }

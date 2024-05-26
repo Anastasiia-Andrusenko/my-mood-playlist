@@ -13,6 +13,7 @@ import Modal from "../Modal/Modal";
 import { GrHome } from "react-icons/gr";
 import { TbLogout } from "react-icons/tb";
 import { MdOutlineLibraryMusic } from "react-icons/md";
+import { FaUserAlt } from "react-icons/fa";
 
 interface HeaderProps {
   nickname: string | null;
@@ -71,12 +72,11 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
       />
         {nickname ? (
           <div className={styles.content}>
-            <p className={styles.welcome}>How are you, {nickname}?</p>
             <div className={styles.nav}>
               {page && <Link href={`/images`} className={styles.link} passHref>
                 <div className={styles.tooltip}>
-                    <MdOutlineLibraryMusic />
-                    <span className={styles.tooltiptext}>back to mood list</span>
+                  <MdOutlineLibraryMusic />
+                  <span className={styles.tooltiptext}>back to mood list</span>
                 </div>
               </Link>}
               <Link href={`/`} className={styles.link} passHref >
@@ -92,6 +92,16 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
                 </div>
               </p>
             </div>
+            <p className={styles.welcome}>How are you, &nbsp;
+              <Link href={`/cabinet`} className={styles.nickname} passHref>
+                <div className={styles.tooltip}>&nbsp;
+                {nickname}&nbsp;&nbsp;
+                  <FaUserAlt />
+                  <span className={styles.tooltipText}>to personal account</span>
+                </div> 
+              </Link>
+              &nbsp;?
+            </p>
           </div>
         ) : (
           <p>Not logged in</p>

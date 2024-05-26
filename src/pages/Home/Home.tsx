@@ -17,6 +17,7 @@ import Footer from '../../components/Footer/Footer';
 import { animateScroll as scroll, scroller } from 'react-scroll';
 import Modal from '../../components/Modal/Modal';
 import { TbLogout } from "react-icons/tb";
+import MoodGallery from '../../components/MoodGallery/MoodGallery';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -24,6 +25,7 @@ const basePath = publicRuntimeConfig.basePath || '';
 const Home: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSlideShowVisible, setIsSlideShowVisible] = useState(true);
 
   const router = useRouter();
 
@@ -37,16 +39,12 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      scroller.scrollTo('text-section', {
-        duration: 2000,
-        delay: 0,
-        smooth: 'easeInOutQuart',
-        offset: -(window.innerHeight * 0.1) // Adjust for margin-top: 10vh
-      });
-    }, 6000); // 6 seconds
+      setIsSlideShowVisible(false);
+    }, 7000); // 7 seconds
 
     return () => clearTimeout(timer);
   }, []);
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden';
@@ -91,20 +89,36 @@ const Home: React.FC = () => {
         onClose={handleCloseModal}
         onConfirm={handleConfirmLogout}
       />
-      <SlideShow text='listen to your heart'/>
+      <div
+        className={`${styles.slideShowContainer} ${isSlideShowVisible ? styles.show : styles.hide}`}
+      >
+        <SlideShow text='listen to your heart'/>
+      </div>
       <p className={styles.text} id='text-section'>Your life is like the best fucking movie! <br/>
         The background changes, characters appear. 
         Yesterday you were crying, and now you are laughing. 
         What can add spice to this moment? Yes. <br/>
         A perfectly fitting soundtrack
       </p>
-      <h2 className={styles.comeOn}><Link href={`/images`} passHref className={styles.link}>come on</Link></h2>
+      <div className={styles.hookContainer}>
+        <div className={styles.hook}>
+          <div className={styles.hookImg}><MoodGallery/></div>
+          {isLoggedIn ? <p className={styles.hookText}>
+          These images evoke different feelings and moods. Accordingly, they all sound different. You are already logged in, so don&apos;t forget to visit your <Link href={`/account`} className={styles.textlink}>personal account</Link>
+          </p> : <p className={styles.hookText}>These images evoke different feelings and moods. Accordingly, they all sound different. 
+            To enjoy the music, you need to log in. It&apos;s very easy to do it <Link href={`/login`} className={styles.textlink}>here</Link>. And if you 
+            don&apos;t have an account yet, go <Link href={`/register`} className={styles.textlink} >here</Link>. And don&apos;t forget to visit your <Link href={`/account`} className={styles.textlink}>personal account</Link> there are more features. <br/>Enjoy your listening.
+           </p>}
+          
+        </div>
+      </div>
+      <h2 className={styles.comeOn}><Link href={`/images`} passHref className={styles.link}>Come on<br/>Let&apos;s choose a playlist</Link></h2>
       <h1 className={styles.title}>
         <Link href={`/images`} passHref className={styles.link}>listen to music that perfectly matches your mood</Link>
       </h1>
       {isLoggedIn ? (
         <div className={styles.loggedIn}>
-          <p className={styles.already}>You are already logged in. However, you can log out anytime</p>
+          <p className={styles.already}>You are now logged in and can use all the features of this application. However, if you want, you can log out at any time</p>
           <button onClick={handleOpenModal} className={styles.button}>now<TbLogout className={styles.icon}/></button>
         </div>
       ) : ( <>

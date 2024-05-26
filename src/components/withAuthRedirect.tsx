@@ -1,3 +1,7 @@
+// 
+// withAuthRedirect.tsx
+// 
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { auth } from '../utils/firebaseConfig';

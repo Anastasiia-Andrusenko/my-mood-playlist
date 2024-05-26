@@ -35,22 +35,28 @@ const Login: React.FC = () => {
   }, [router]);
 
   const onLoginWithGoogle = async () => {
+    setLoading(true);
     try {
       const result = await loginWithGoogle();
       console.log(result.user); // Виведення інформації користувача
       router.push('/images'); // Перенаправлення після успішного входу
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const onLoginWithFacebook = async () => {
+    setLoading(true);
     try {
       const result = await loginWithFacebook();
       console.log(result.user); // Виведення інформації користувача
       router.push('/images'); // Перенаправлення після успішного входу
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

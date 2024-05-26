@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Loader from '../components/Loader/Loader';
 import { QueryClientProvider } from 'react-query';
 import queryClient from '../utils/queryClient';
+import { AuthProvider } from '../context/AuthContext';
 
 
 
@@ -32,12 +33,14 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   }, [router]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<Loader/>}>
-          <Component {...pageProps} />
-          <ToastContainer />
-      </Suspense>
-    </QueryClientProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<Loader/>}>
+            <Component {...pageProps} />
+            <ToastContainer />
+        </Suspense>
+      </QueryClientProvider>
+    </AuthProvider>
   );
 };
 

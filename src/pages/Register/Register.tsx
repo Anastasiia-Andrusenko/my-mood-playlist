@@ -41,6 +41,7 @@ const Register: React.FC = () => {
   }, [router]);
 
   const loginWithGoogle = async (): Promise<void> => {
+    setLoading(true);
     const provider = new GoogleAuthProvider();
     try {
       const result: UserCredential = await signInWithPopup(auth, provider);
@@ -48,10 +49,13 @@ const Register: React.FC = () => {
     } catch (error: any) {
       console.error('Google login error:', error.message);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   
   const loginWithFacebook = async (): Promise<void> => {
+    setLoading(true);
     const provider = new FacebookAuthProvider();
     try {
       const result: UserCredential = await signInWithPopup(auth, provider);
@@ -59,6 +63,8 @@ const Register: React.FC = () => {
     } catch (error: any) {
       console.error('Facebook login error:', error.message);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,14 +109,13 @@ const Register: React.FC = () => {
         showNickname={true} 
       />
       <p>
-      Already have an account? Then <Link href={`/login`} className={styles.link} passHref>Log in</Link>
+        Already have an account? Then <Link href={`/login`} className={styles.link} passHref>Log in</Link>
       </p>
       <div>
         <AuthButton onClick={loginWithGoogle} text="Log in with Google" />
         <AuthButton onClick={loginWithFacebook} text="Log in with Facebook" />
       </div>
-      
-       </div>
+      </div>
     </div>
   );
 };
