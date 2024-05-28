@@ -56,6 +56,7 @@ const SlideShow = ({text}) => {
           src={image}
           className={`${styles.slide} ${index === currentImageIndex ? styles.active : ''}`}
           alt={`picture ${index}`}
+          priority
         />
       ))}
       <div className={styles.content}>

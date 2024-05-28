@@ -11,6 +11,7 @@ import Loader from '../../components/Loader/Loader';
 import ImagesContent from '../../components/ImagesContent/ImagesContent';
 import Footer from '../../components/Footer/Footer';
 import UploadImage from '../../components/UploadImg/UploadImage';
+import FavoritesPlaylists from '../../components/FavoritesPlaylists/FavoritesPlaylists';
 
 
 

@@ -14,6 +14,7 @@ import { GrHome } from "react-icons/gr";
 import { TbLogout } from "react-icons/tb";
 import { MdOutlineLibraryMusic } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext";
 
 interface HeaderProps {
   nickname: string | null;
@@ -24,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const currentPage = page;
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     if (isModalOpen) {
@@ -85,23 +87,22 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
                     <span className={styles.tooltiptext}>go Home page</span>
                 </div>
               </Link>
-              <p onClick={handleOpenModal} className={styles.link} >
+              <div onClick={handleOpenModal} className={styles.link} >
               <div className={styles.tooltip}>
                 <TbLogout />
                   <span className={styles.tooltiptext}>Log Out</span>
                 </div>
-              </p>
+              </div>
             </div>
-            <p className={styles.welcome}>How are you, &nbsp;
-              <Link href={`/cabinet`} className={styles.nickname} passHref>
+            <div className={styles.welcome}>
+              <Link href={`/account`} className={styles.nickname} passHref>
                 <div className={styles.tooltip}>&nbsp;
-                {nickname}&nbsp;&nbsp;
+                {currentUser?.displayName || 'User'}&nbsp;&nbsp;
                   <FaUserAlt />
                   <span className={styles.tooltipText}>to personal account</span>
                 </div> 
               </Link>
-              &nbsp;?
-            </p>
+            </div>
           </div>
         ) : (
           <div className={styles.notLogin}>

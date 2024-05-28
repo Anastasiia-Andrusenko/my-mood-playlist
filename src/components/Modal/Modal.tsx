@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './Modal.module.scss';
+import { GrClose } from "react-icons/gr";
 
 const Modal = ({ isOpen, onClose, onConfirm }) => {
   useEffect(() => {
@@ -28,7 +29,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
   return (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.modal}>
-        <span onClick={onClose} className={styles.close}>x</span>
+        <span onClick={onClose} className={styles.close}><GrClose /></span>
         <p>Are you sure?</p>
         <div className={styles.buttons}>
           <button onClick={onConfirm} className={styles.button}>Yes</button>

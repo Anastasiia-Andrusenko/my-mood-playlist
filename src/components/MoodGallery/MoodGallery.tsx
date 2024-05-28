@@ -50,6 +50,7 @@ const MoodGallery: React.FC = () => {
           height={300}
           className={`${styles.image} ${index === currentImageIndex ? styles.active : ''}`}
           alt={image.description || `Gallery image ${index}`}
+          priority
         />
       ))}
     </div>

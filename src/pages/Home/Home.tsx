@@ -53,42 +53,9 @@ const Home: React.FC = () => {
     }
   }, [isModalOpen]);
 
-  const logout = async () => {
-    // Реалізація функції onLogout
-    try {
-      const result = await handleLogout();
-      if (result.success) {
-      toast.warning('You logged out');
-      router.push('/');
-    } else {
-      toast.error('Logout failed');
-      }
-    } catch (error) {
-      toast.error('An error occurred during logout');
-    }
-    console.log('User logged out');
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleConfirmLogout = () => {
-    setIsModalOpen(false);
-    logout();
-  };
 
   return (
-    <div className={styles.container}>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmLogout}
-      />
+    <div className={styles.container}> 
       <div
         className={`${styles.slideShowContainer} ${isSlideShowVisible ? styles.show : styles.hide}`}
       >
@@ -117,10 +84,7 @@ const Home: React.FC = () => {
         <Link href={`/images`} passHref className={styles.link}>listen to music that perfectly matches your mood</Link>
       </h1>
       {isLoggedIn ? (
-        <div className={styles.loggedIn}>
-          <p className={styles.already}>You are now logged in and can use all the features of this application. However, if you want, you can log out at any time</p>
-          <button onClick={handleOpenModal} className={styles.button}>now<TbLogout className={styles.icon}/></button>
-        </div>
+        ''
       ) : ( <>
       <p className={styles.please}>Please log in to access all features.</p>
       <nav className={styles.nav}>

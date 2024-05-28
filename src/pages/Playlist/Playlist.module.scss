@@ -1,11 +1,37 @@
 @import '../../styles/variables';
 
-.container {
-  padding: 20px;
-  margin-bottom: 10vh;
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.backgroundImage {
+  flex: 1;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
-  max-width: 1400px;
+  height: 100vh;
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background:  $overlay-playlist; 
+}
+
+.container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
 .content {
@@ -34,60 +60,6 @@
   }
 }
 
-.description {
-  color: $font-primary-color;
-  font-size: 14px;
-  text-align: center;
-  padding: 10px; /* Змініть значення за потреби */
-
-
-  @media screen and (min-width: 768px) {
-    font-size: $base-font-size;
-  }
-}
-
-.imgWrapper {
-  position: absolute;
-  top: 80px;
-  width: 100%;
-  z-index: -10;
-
-  @media screen and (min-width: 325px) {
-    top: 60px;
-  }
-}
-
-.img {
-  display: block;
-  margin: auto;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  transition: transform 250ms ease;
-}
-
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: $overlay-playlist;
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 250ms ease;
-  text-align: center;
-  
-
-  @media screen and (max-width: 1199px) {
-    padding: 14px;
-  font-size: $base-font-size;
-  }
-}
 
 .playerContainer {
   position: relative;
@@ -116,7 +88,7 @@
   overflow: scroll;
   scrollbar-color: $font-primary-color;
   padding: 0;
-  margin-left: 10vw;
+  margin-left: 20px;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -134,19 +106,7 @@
     align-items: center;
     justify-content: center;
     gap: 30px;
-    margin-top: 10vw;
-  }
-
-  @media screen and (min-width: 850px) {
-    margin-top: 15vw;
-  }
-
-  @media screen and (min-width: 1020px) {
-    margin-top: 20vw;
-  }
-
-  @media screen and (min-width: 1400px) {
-    margin-top: 30vw;
+    margin-top: 60px;
   }
 }
 
@@ -177,65 +137,116 @@
   justify-content: center;
 }
 
+.btnContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: fit-content;
+  margin: 20px auto;
+}
+
 .likeButton {
-  position: absolute;
-  bottom: -7vw;
+  background-color: $secondary-color;
   padding: 5px 20px;
   font-size: 28px;
-  left: calc((100vw / 2));
   cursor: pointer;
   text-align: center;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
--webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
--moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
-border-radius: 6px;
-transform: scale(0.8);
-transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
-
-  @media screen and (min-width: 400px) {
-    bottom: -5vw;
-  }
-
-  @media screen and (min-width: 550px) {
-    bottom: -3vw;
-  }
-
-  @media screen and (min-width: 768px) {
-    bottom: -6vw;
-    transform: scale(1);
-  }
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .likeButton:hover {
   transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
   background-color: $font-hoover-color;
+
+  .tooltipText {
+    visibility: visible;
+    top: 60px; 
+    right: 0;
+    background-color: $secondary-color;
+    opacity: 1;
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+    transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
 }
 
-.tooltip .tooltipText {
+.tooltipText {
   font-size: 16px;
-  // visibility: hidden; 
   width: 120px;
   color: $font-primary-color;
+  background-color: $secondary-color;
   font-weight: 200;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
+  top: 60px; 
+  right: 0;
   z-index: 1;
-  bottom: 0; /* позиція підказки зверху */
-  left: -70px;
-  margin-left: -60px;
-  opacity: 0.3;
+  opacity: 0;
   transition: opacity 250ms cubic-bezier(0.19, 1, 0.22, 1);
   transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.likeButton:hover .tooltipText {
-  visibility: visible;
+.tooltipTextBtn {
+  font-size: 16px;
+  height: 55px;
+  width: 120px;
+  line-height: 2.2rem;
+  color: $font-primary-color;
   background-color: $secondary-color;
-  opacity: 1;
+  font-weight: 200;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 0;
+  position: absolute;
+  top: 60px; 
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.toggle {
+  cursor: pointer;
+  border: none;
+  background-color: $secondary-color;
+  color: $font-secondary-color;
+  padding: 5px 20px;
+  font-size: 28px;
+  font-weight: 300;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
 -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
 -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
-transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
+border-radius: 6px;
+  transition: color 250ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.toggle:hover {
+  background-color: $font-hoover-color;
+  color: $font-primary-color;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+.tooltipBtn:hover .tooltipTextBtn {
+  visibility: visible;
+  top: 60px; 
+  right: 0;
+  background-color: $secondary-color;
+  opacity: 1;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.6);
+  transition: background-color 250ms cubic-bezier(0.19, 1, 0.22, 1);
 }
