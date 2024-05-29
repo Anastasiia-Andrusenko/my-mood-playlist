@@ -21,7 +21,7 @@ interface HeaderProps {
   page: string | null;
 }
 
-const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
+const Header: React.FC<HeaderProps> = ({ page }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const currentPage = page;
@@ -72,47 +72,105 @@ const Header: React.FC<HeaderProps> = ({ nickname, page }) => {
         onClose={handleCloseModal}
         onConfirm={handleConfirmLogout}
       />
-        {nickname ? (
+        {currentUser ? (
           <div className={styles.content}>
             <div className={styles.nav}>
-              {page && <Link href={`/images`} className={styles.link} passHref>
-                <div className={styles.tooltip}>
-                  <MdOutlineLibraryMusic />
-                  <span className={styles.tooltiptext}>back to mood list</span>
-                </div>
-              </Link>}
-              <Link href={`/`} className={styles.link} passHref >
-                <div className={styles.tooltip}>
-                    <GrHome />
-                    <span className={styles.tooltiptext}>go Home page</span>
-                </div>
-              </Link>
-              <div onClick={handleOpenModal} className={styles.link} >
-              <div className={styles.tooltip}>
-                <TbLogout />
-                  <span className={styles.tooltiptext}>Log Out</span>
-                </div>
-              </div>
+            {currentPage === 'home' && (
+                <Link href={`/images`} passHref>
+                  <div className={styles.link}>
+                    <div className={styles.tooltip}>
+                      <MdOutlineLibraryMusic />
+                      <span className={styles.tooltiptext}>to mood list</span>
+                    </div>
+                  </div>
+                </Link>
+              )}
+              {currentPage === 'images' && (
+                <>
+                <Link href={`/`} passHref>
+                    <div className={styles.link}>
+                      <div className={styles.tooltip}>
+                        <GrHome />
+                        <span className={styles.tooltiptext}>go Home page</span>
+                      </div>
+                    </div>
+                  </Link>
+                  <div onClick={handleOpenModal} className={styles.link}>
+                    <div className={styles.tooltip}>
+                      <TbLogout />
+                      <span className={styles.tooltiptext}>Log Out</span>
+                    </div>
+                  </div>
+                </>
+              )}
+              {currentPage === 'playlist' && (
+                <><Link href={`/images`} passHref>
+                  <div className={styles.link}>
+                    <div className={styles.tooltip}>
+                      <MdOutlineLibraryMusic />
+                      <span className={styles.tooltiptext}>to mood list</span>
+                    </div>
+                  </div>
+                </Link>
+                <Link href={`/`} passHref>
+                    <div className={styles.link}>
+                      <div className={styles.tooltip}>
+                        <GrHome />
+                        <span className={styles.tooltiptext}>go Home page</span>
+                      </div>
+                    </div>
+                  </Link>
+                </>
+              )}
+              {currentPage === 'account' && <>
+              <Link href={`/images`} passHref>
+                  <div className={styles.link}>
+                    <div className={styles.tooltip}>
+                      <MdOutlineLibraryMusic />
+                      <span className={styles.tooltiptext}>to mood list</span>
+                    </div>
+                  </div>
+                </Link>
+                <Link href={`/`} passHref>
+                    <div className={styles.link}>
+                      <div className={styles.tooltip}>
+                        <GrHome />
+                        <span className={styles.tooltiptext}>go Home page</span>
+                      </div>
+                    </div>
+                  </Link>
+                  <div onClick={handleOpenModal} className={styles.link}>
+                    <div className={styles.tooltip}>
+                      <TbLogout />
+                      <span className={styles.tooltiptext}>Log Out</span>
+                    </div>
+                  </div>
+              </>
+              }
             </div>
             <div className={styles.welcome}>
-              <Link href={`/account`} className={styles.nickname} passHref>
-                <div className={styles.tooltip}>&nbsp;
-                {currentUser?.displayName || 'User'}&nbsp;&nbsp;
-                  <FaUserAlt />
-                  <span className={styles.tooltipText}>to personal account</span>
-                </div> 
+              <Link href={`/account`} passHref>
+                <div className={styles.nickname}>
+                  <div className={styles.tooltip}>
+                    &nbsp;{currentUser?.displayName || 'User'}&nbsp;&nbsp;
+                    <FaUserAlt />
+                    <span className={styles.tooltipText}>to personal account</span>
+                  </div>
+                </div>
               </Link>
             </div>
           </div>
         ) : (
           <div className={styles.notLogin}>
-            <Link href={`/`} className={styles.link} passHref >
+            <Link href={`/`} passHref>
+              <div className={styles.link}>
                 <div className={styles.tooltip}>
-                    <GrHome />
-                    <span className={styles.tooltiptext}>go Home page</span>
+                  <GrHome />
+                  <span className={styles.tooltiptext}>go Home page</span>
                 </div>
-              </Link>
-              <p>Not logged in</p>
+              </div>
+            </Link>
+            <p>Not logged in</p>
           </div>
         )}
       </div>

@@ -7,17 +7,13 @@ import React, { useEffect, useState } from 'react';
 import styles from './Home.module.scss';
 import getConfig from 'next/config';
 import { auth } from '../../utils/firebaseConfig';
-import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
-import { handleLogout } from '../../services/authService';
-import useAuthState from '../../hooks/useAuthState';
 import SlideShow from '../../components/SlideShow/SlideShow';
 import Footer from '../../components/Footer/Footer';
-import { animateScroll as scroll, scroller } from 'react-scroll';
-import Modal from '../../components/Modal/Modal';
-import { TbLogout } from "react-icons/tb";
 import MoodGallery from '../../components/MoodGallery/MoodGallery';
+import Header from '../../components/Header/Header';
+import { useAuth } from '../../context/AuthContext';
+import HeaderWrapper from '../../components/Header/HeaderWrapper';
 
 const { publicRuntimeConfig } = getConfig();
 const basePath = publicRuntimeConfig.basePath || '';
@@ -26,6 +22,8 @@ const Home: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSlideShowVisible, setIsSlideShowVisible] = useState(true);
+  const { currentUser, updateDisplayName } = useAuth();
+  const [displayName, setDisplayName] = useState(currentUser?.displayName || '');
 
   const router = useRouter();
 
@@ -56,6 +54,7 @@ const Home: React.FC = () => {
 
   return (
     <div className={styles.container}> 
+    <HeaderWrapper nickname={currentUser} page={'home'}/>
       <div
         className={`${styles.slideShowContainer} ${isSlideShowVisible ? styles.show : styles.hide}`}
       >

@@ -2,7 +2,7 @@
 // AuthContext.tsx
 // 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { auth } from '../utils/firebaseConfig'; // Ваша конфігурація Firebase
+import { auth } from '../utils/firebaseConfig';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           setCurrentUser(user);
           setIsAuthenticated(true);
         } else {
-          toast.warn('Please verify your email address before proceeding.');
+          toast.warn('Please verify your email address before proceeding.', { autoClose: false });
           signOut(auth);
         }
       } else {
@@ -71,5 +71,3 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-

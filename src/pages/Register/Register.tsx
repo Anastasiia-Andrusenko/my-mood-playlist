@@ -9,7 +9,8 @@ import {
   FacebookAuthProvider, 
   signInWithPopup, 
   UserCredential,
-  updateProfile 
+  updateProfile,
+  sendEmailVerification,  
 } from 'firebase/auth';
 import { auth } from '../../utils/firebaseConfig';
 import styles from './Register.module.scss';
@@ -30,7 +31,6 @@ const basePath = publicRuntimeConfig.basePath || '';
 const Register: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState(false);
-  const [nickname, setNickname] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -76,24 +76,22 @@ const Register: React.FC = () => {
     setLoading(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential: UserCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('User before updateProfile:', user);
 
+      await updateProfile(user, { displayName: nickname });
 
-      if (user) {
-        await updateProfile(user, {
-          displayName: nickname
-        });
-        console.log('Profile updated:', user.displayName);
-      };
-      toast.success('User registered successfully');
-      router.push('/images');
+      console.log('Sending email verification...');
+      await sendEmailVerification(user);
+      console.log('Email verification sent');
 
+      toast.warn('Please verify your email address before proceeding.');
+
+      router.push('/login');
     } catch (error: any) {
       setError(error.message);
       toast.error(`Registration failed: ${error.message}`);
-
     } finally {
       setLoading(false);
     }
@@ -126,5 +124,5 @@ const Register: React.FC = () => {
   );
 };
 
-export default withAuthRedirect(Register);
+export default Register;
 

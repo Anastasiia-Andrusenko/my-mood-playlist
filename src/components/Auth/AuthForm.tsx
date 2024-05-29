@@ -1,6 +1,10 @@
+// 
+// AuthForm.tsx
+// 
 import React, { useState, ReactNode } from 'react';
 import styles from './AuthForm.module.scss';
 import css from './Button.module.scss';
+import { BsFillUnlockFill, BsLock } from 'react-icons/bs';
 
 interface AuthFormProps {
   title: string;
@@ -14,10 +18,15 @@ const AuthForm: React.FC<AuthFormProps> = ({ title, buttonText, onSubmit, showNi
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(email, password, nickname);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -39,7 +48,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ title, buttonText, onSubmit, showNi
         <div className={styles.inputGroup}>
           <label htmlFor="password" className={styles.label}>Password:</label>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             placeholder="Password"
             id="password"
             value={password}
@@ -47,6 +56,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ title, buttonText, onSubmit, showNi
             required
             className={styles.input}
           />
+          <button type="button" className={styles.showPasswordBtn} onClick={toggleShowPassword}>
+            {showPassword ? <BsLock className={styles.icon}/> : <BsFillUnlockFill className={styles.icon}/>}
+          </button>
         </div>
         {showNickname && (
           <div className={styles.inputGroup}>

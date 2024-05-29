@@ -1,7 +1,6 @@
 
 // login.tsx
 // 
-
 import Link from 'next/link';
 import { auth } from '../../utils/firebaseConfig';
 import styles from './Login.module.scss';
@@ -105,4 +104,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default withAuthRedirect(Login);
+export default Login;
