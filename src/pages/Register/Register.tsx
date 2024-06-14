@@ -18,7 +18,7 @@ import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import Loader from '../../components/Loader/Loader';
 import { toast } from 'react-toastify';
-import withAuthRedirect from '../../components/withAuthRedirect';
+// import withAuthRedirect from '../../components/withAuthRedirect';
 import AuthForm from '../../components/Auth/AuthForm';
 import AuthButton from '../../components/Auth/AuthButton';
 import Link from 'next/link';
