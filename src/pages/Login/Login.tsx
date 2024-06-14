@@ -92,7 +92,7 @@ const Login: React.FC = () => {
       />
       <div>
         <AuthButton onClick={onLoginWithGoogle} text="Log in with Google" />
-        <AuthButton onClick={onLoginWithFacebook} text="Log in with Facebook" />
+        {/* <AuthButton onClick={onLoginWithFacebook} text="Log in with Facebook" /> */}
       </div>
       <p>
         Don&apos;t have an account? <Link href={`/register`} className={styles.link} passHref>Register</Link>

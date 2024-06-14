@@ -115,7 +115,7 @@ const Register: React.FC = () => {
       </p>
       <div>
         <AuthButton onClick={loginWithGoogle} text="Log in with Google" />
-        <AuthButton onClick={loginWithFacebook} text="Log in with Facebook" />
+        {/* <AuthButton onClick={loginWithFacebook} text="Log in with Facebook" /> */}
       </div>
       </div>
     </div>
