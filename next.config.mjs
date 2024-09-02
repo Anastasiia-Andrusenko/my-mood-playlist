@@ -2,11 +2,11 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   reactStrictMode: true,
-  distDir: 'out',
+  // distDir: 'out',
   trailingSlash: true,
-  output: 'export',
-  basePath: isProd ? '/my-mood-playlist' : '',
-  assetPrefix: isProd ? '/my-mood-playlist/' : '',
+  // output: 'export',
+  // basePath: isProd ? '/my-mood-playlist' : '',
+  // assetPrefix: isProd ? '/my-mood-playlist/' : '',
   publicRuntimeConfig: {
     basePath: isProd ? '/my-mood-playlist' : '',
   },
