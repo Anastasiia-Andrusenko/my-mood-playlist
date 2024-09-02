@@ -13,10 +13,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  experimental: {
-    appDir: true,
-  },
+  // pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  // experimental: {
+  //   appDir: true,
+  // },
   async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
       '/': { page: '/' },

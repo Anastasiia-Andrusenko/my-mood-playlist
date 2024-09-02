@@ -7,10 +7,11 @@
   align-items: center;
   height: 100vh;
   text-align: center;
-  background-image: url('../../../public/img/log.jpg');
-  background-position: center top;
+  background-image: url('../../public/img/reg.jpg');
+  background-position: center;
   background-size: cover;
-  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .overlay {
@@ -25,9 +26,7 @@
 
 .form {
   padding: 40px;
-  
   z-index: 2;
-  // background-image: url('../../../public/img/log.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -43,9 +42,7 @@
   transform: scale(1.2);
 }
 
-
-
-.link{
+.link {
   color: $font-primary-color;
 }
 

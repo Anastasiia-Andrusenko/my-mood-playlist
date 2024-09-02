@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .main {
-  background-image: url('../../../public/img/cabinet.jpg');
+  background-image: url('../../public/img/cabinet.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -18,8 +18,6 @@
     padding-top: 12vw;
   }
 }
-
-
 
 .title {
   text-align: center;
