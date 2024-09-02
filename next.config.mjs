@@ -15,7 +15,7 @@ const nextConfig = {
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   experimental: {
-    appDir: true, // Включіть це, якщо використовуєте нову структуру `app`.
+    appDir: true,
   },
   async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
